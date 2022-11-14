@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { useCoins } from './client';
 import Button from '../../components/button/button';
@@ -40,7 +40,7 @@ const WalletAddress: React.FC<{address: string}> = ({address}) => {
 }
 
 const Coins: React.FC<{address: string}> = ({ address }) => {
-  const coinTypes = ['0x1::aptos_coin::AptosCoin'];
+  const coinTypes = useMemo(() =>['0x1::aptos_coin::AptosCoin'], []);
   const coins = useCoins(address, coinTypes);
   const coinItems = coinTypes.map(type => (
     <li key={type}>{type}: {coins[type]}</li>
