@@ -4,7 +4,6 @@ import {
 } from '@manahippo/aptos-wallet-adapter';
 import { supportWallets } from './support-wallets';
 
-
 const AptosWalletProvider: FC<PropsWithChildren> = ({ children }) => {
   return (
     <WalletProvider
