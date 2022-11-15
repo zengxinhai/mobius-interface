@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useGetCoinBalances } from "../chain/coin-client";
 import { COINS } from "../config";
 import { Coin } from "../types";
-import { useAddress, useNetwork } from "./initialize";
+import { useAddress } from "./initialize";
+import { useNetwork } from "./network";
 
 export const useUserCoinData = () => {
   const address = useAddress();
