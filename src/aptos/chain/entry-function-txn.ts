@@ -28,7 +28,7 @@ export const BuildEntryFuncTxn = (
   const entryFunctionPayload = new TransactionPayloadEntryFunction(
     EntryFunction.natural(module, func, ty_args, args)
   );
-  const rawTxn = new RawTransaction(
+  return new RawTransaction(
     // Transaction sender account address
     AccountAddress.fromHex(address),
     // Transaction sequence number
