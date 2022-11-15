@@ -23,7 +23,6 @@ const _getCoinBalances = async (client: AptosClient, address: string, coinTypes:
   
   const resources = await client.getAccountResources(address);
   const coinResources = resources.filter(data => coinTypes.includes(data.type));
-  console.log(address, coinTypes, coinResources);
   
   const coinValues: {[K in typeof coinTypes[number]]: number} = Object.create(null);
   coinResources.forEach(resource => {
