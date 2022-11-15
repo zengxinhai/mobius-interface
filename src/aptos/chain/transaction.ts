@@ -12,7 +12,7 @@ const {
 const formatTyArg = (arg: string) => new TypeTagStruct(StructTag.fromString(arg));
 const formatArg = (arg: string) => BCS.bcsSerializeStr(arg);
 
-export const BuildModuleCallTxn = (
+export const BuildEntryFuncTxn = (
   module: string,
   func: string,
   _tyArgs: string[],
