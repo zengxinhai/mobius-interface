@@ -1,15 +1,12 @@
 import React from 'react';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
-import { useUserCoinData } from '../services/coin';
 import Button from '../../components/button/button';
 
 const WalletConnect: React.FC = () => {
-  const { connect, connected, disconnect, account, wallets, network } = useWallet();
+  const { connect, connected, disconnect, wallets } = useWallet();
   if (connected) {
     return (
       <>
-        <WalletAddress address={account?.address?.toString() || ''} />
-        <Coins address={account?.address?.toString() || ''} />
         <Button onClick={() => disconnect()}>
           Disconnect
         </Button>
@@ -27,29 +24,6 @@ const WalletConnect: React.FC = () => {
         />
       )}
     </div>
-  )
-}
-
-const WalletAddress: React.FC<{address: string}> = ({address}) => {
-  return (
-    <div>
-      <p>Your address:</p>
-      <p>{ address }</p>
-    </div>
-  )
-}
-
-const Coins: React.FC<{address: string}> = ({ address }) => {
-  const coins = useUserCoinData();
-  const coinItems = coins.map(coin => (
-    <li key={coin.meta.symbol}>
-      {coin.meta.symbol}: {coin.value}
-    </li>
-  ))
-  return (
-    <ul>
-      {coinItems}
-    </ul>
   )
 }
 

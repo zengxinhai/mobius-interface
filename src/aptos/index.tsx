@@ -1,7 +1,8 @@
 import React, { CSSProperties } from 'react';
 import AptosWalletProvider from './wallet/wallet-provider';
 import WalletConnect from './wallet/wallet-connect';
-import AccountComp from "./components/Account.";
+import AccountComp from "./components/Account";
+import CoinsComp from "./components/Coin";
 
 const style: CSSProperties = {
   display: 'flex',
@@ -9,6 +10,7 @@ const style: CSSProperties = {
   justifyContent: 'center',
   alignItems: 'center',
   height: '100%',
+  width: '768px',
   margin: 'auto'
 }
 
@@ -16,8 +18,9 @@ const App: React.FC = () => {
   return (
     <AptosWalletProvider>
       <div style={style}>
-        <WalletConnect />
         <AccountComp />
+        <CoinsComp />
+        <WalletConnect />
       </div>
     </AptosWalletProvider>
   );
