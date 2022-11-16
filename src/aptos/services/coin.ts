@@ -10,6 +10,7 @@ export const useUserCoinData = () => {
   const network = useNetwork();
   const getCoinBalances = useGetCoinBalances(network.nodeUrl);
   const [coins, setCoins] = useState<Coin[]>([]);
+  const [refresh, setRefresh] = useState(1);
   useEffect(() => {
     const coinTypes = COINS[network.mode].map(coin => coin.type);
     getCoinBalances(address, coinTypes).then(balances => {
@@ -17,6 +18,6 @@ export const useUserCoinData = () => {
         balances.map((balance, i) => ({ value: balance, meta: COINS[network.mode][i] }))
       )
     });
-  }, [address, getCoinBalances]);
-  return coins;
+  }, [address, getCoinBalances, refresh]);
+  return { coins, refreshCoins: () => setRefresh(val => val + 1) };
 }

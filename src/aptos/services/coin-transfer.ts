@@ -1,19 +1,16 @@
 import {useCallback} from "react";
-import { useWallet } from "@manahippo/aptos-wallet-adapter";
-import { buildEntryFuncPayload } from "../chain/entry-function-txn";
 import {useAccount} from "./account";
+import { useModuleCaller } from "./module-caller";
 
 export const useCoinTransfer = () => {
-  const { connected, signAndSubmitTransaction } = useWallet();
+  const moduleCaller = useModuleCaller();
   const account = useAccount();
-  return useCallback(async (recipient: string, amount: string) => {
-    if (!connected || !account) return null;
-    const transferTxnPayload = buildEntryFuncPayload(
-      "0x1::coin",
-      "transfer",
-      ["0x1::aptos_coin::AptosCoin"],
-      [recipient, amount],
-    );
-    return signAndSubmitTransaction(transferTxnPayload);
-  }, [signAndSubmitTransaction, account])
+  return useCallback(async (recipient: string, amount: string | number) => {
+    if (!moduleCaller || !account) return null;
+    const module = "0x1::coin";
+    const func = "transfer";
+    const typeArgs = ["0x1::aptos_coin::AptosCoin"];
+    const args = [recipient, amount.toString()];
+    return moduleCaller(module, func, typeArgs, args);
+  }, [moduleCaller, account])
 }

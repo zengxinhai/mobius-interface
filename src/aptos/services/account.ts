@@ -9,10 +9,11 @@ export const useAccount = () => {
   const address = useAddress();
   const [account, setAccount] = useState<Account>();
   const getAccount = useGetAccount(network.nodeUrl);
+  const [refresh, setRefresh] = useState(1);
   useEffect(() => {
     getAccount(address).then(data => {
       data && setAccount({ address, sequenceNumber: data.sequence_number, authKey: data.authentication_key })
     })
-  }, [address, getAccount]);
-  return account;
+  }, [address, getAccount, refresh]);
+  return { account, refreshAccount: () => setRefresh((val) => val + 1) };
 }

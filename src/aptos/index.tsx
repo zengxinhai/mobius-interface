@@ -1,9 +1,11 @@
 import React, { CSSProperties } from 'react';
 import AptosWalletProvider from './wallet/wallet-provider';
+import { AptosStateProvider } from "./store/state";
 import WalletConnect from './wallet/wallet-connect';
 import AccountComp from "./components/Account";
 import CoinsComp from "./components/Coin";
 import TransferComp from "./components/Transfer";
+import Box from "@mui/material/Box";
 
 const style: CSSProperties = {
   display: 'flex',
@@ -18,12 +20,16 @@ const style: CSSProperties = {
 const App: React.FC = () => {
   return (
     <AptosWalletProvider>
-      <div style={style}>
-        <AccountComp />
-        <CoinsComp />
-        <WalletConnect />
-        <TransferComp />
-      </div>
+      <AptosStateProvider>
+        <div style={style}>
+          <AccountComp />
+          <Box mb={3} />
+          <CoinsComp />
+          <Box mb={3} />
+          <TransferComp />
+          <WalletConnect />
+        </div>
+      </AptosStateProvider>
     </AptosWalletProvider>
   );
 };

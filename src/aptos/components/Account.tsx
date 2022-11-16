@@ -1,13 +1,19 @@
-import React from "react";
-import { useAccount } from "../services/account";
+import React, {useContext} from "react";
+import Typography from "@mui/material/Typography";
+import { aptosContext } from "../store/state";
+import {useWallet} from "@manahippo/aptos-wallet-adapter";
 
 const AccountComp: React.FC = () => {
-  const account = useAccount();
-  if (!account) return null;
+  const { connected } = useWallet();
+  const { account } = useContext(aptosContext);
+  if (!connected || !account) return null;
   return (
     <div style={{ width: '100%' }}>
-      <p>{`Address: ${account.address}`}</p>
-      <p>{`Sequence: ${account.sequenceNumber}`}</p>
+      <Typography variant='h4' borderBottom={1} mb={2}>
+        Your account info
+      </Typography>
+      <Typography mb={1}>{`Address: ${account.address}`}</Typography>
+      <Typography>{`Sequence: ${account.sequenceNumber}`}</Typography>
     </div>
   )
 }

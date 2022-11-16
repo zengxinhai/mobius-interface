@@ -1,15 +1,20 @@
-import React from 'react';
-import { useUserCoinData } from '../services/coin';
+import React, {useContext} from 'react';
+import Typography from "@mui/material/Typography";
+import { aptosContext } from "../store/state";
+import {useWallet} from "@manahippo/aptos-wallet-adapter";
 
 const CoinsComp: React.FC = () => {
-  const coins = useUserCoinData();
+  const { connected } = useWallet();
+  const { coins } = useContext(aptosContext);
+  if (!connected) return null;
   const coinItems = coins.map(coin => (
-    <p key={coin.meta.symbol}>
-      {coin.meta.symbol}: {coin.value}
-    </p>
+    <div key={coin.meta.symbol}>
+      <strong>{coin.meta.symbol}</strong>: { (coin.value / 10**8).toFixed(4) }
+    </div>
   ))
   return (
     <div style={{ width: '100%' }}>
+      <Typography variant='h4' mb={2} borderBottom={1}>Your balance</Typography>
       {coinItems}
     </div>
   )
