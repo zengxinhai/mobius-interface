@@ -13,5 +13,5 @@ export const TEST_NET: Network = {
 export const DEV_NET: Network = {
   nodeUrl: "https://fullnode.devnet.aptoslabs.com",
   mode: "dev",
-  chainId: 3,
+  chainId: 37,
 }

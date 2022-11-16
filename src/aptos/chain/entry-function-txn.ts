@@ -12,7 +12,7 @@ const {
 const formatTyArg = (arg: string) => new TypeTagStruct(StructTag.fromString(arg));
 const formatArg = (arg: string) => BCS.bcsSerializeStr(arg);
 
-export const BuildEntryFuncTxn = (
+export const buildEntryFuncTxn = (
   module: string,
   func: string,
   _tyArgs: string[],
@@ -43,4 +43,18 @@ export const BuildEntryFuncTxn = (
     BigInt(Math.floor(Date.now() / 1000) + 10),
     new ChainId(chainId),
   );
+}
+
+export const buildEntryFuncPayload = (
+  module: string,
+  func: string,
+  tyArgs: string[],
+  args: string[],
+) => {
+  return {
+    type: "entry_function_payload",
+    function: `${module}::${func}`,
+    type_arguments: tyArgs,
+    arguments: args,
+  };
 }

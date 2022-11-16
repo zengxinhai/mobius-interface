@@ -3,6 +3,7 @@ import AptosWalletProvider from './wallet/wallet-provider';
 import WalletConnect from './wallet/wallet-connect';
 import AccountComp from "./components/Account";
 import CoinsComp from "./components/Coin";
+import TransferComp from "./components/Transfer";
 
 const style: CSSProperties = {
   display: 'flex',
@@ -21,6 +22,7 @@ const App: React.FC = () => {
         <AccountComp />
         <CoinsComp />
         <WalletConnect />
+        <TransferComp />
       </div>
     </AptosWalletProvider>
   );
