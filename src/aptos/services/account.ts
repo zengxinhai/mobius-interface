@@ -13,6 +13,6 @@ export const useAccount = () => {
     getAccount(address).then(data => {
       data && setAccount({ address, sequenceNumber: data.sequence_number, authKey: data.authentication_key })
     })
-  }, [address]);
+  }, [address, getAccount]);
   return account;
 }
