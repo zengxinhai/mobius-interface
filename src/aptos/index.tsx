@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import AptosWalletProvider from './wallet/wallet-provider';
 import WalletConnect from './wallet/wallet-connect';
+import AccountComp from "./components/Account.";
 
 const style: CSSProperties = {
   display: 'flex',
@@ -16,6 +17,7 @@ const App: React.FC = () => {
     <AptosWalletProvider>
       <div style={style}>
         <WalletConnect />
+        <AccountComp />
       </div>
     </AptosWalletProvider>
   );

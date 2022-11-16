@@ -18,7 +18,7 @@ export const BuildEntryFuncTxn = (
   _tyArgs: string[],
   _args: string[],
   address: string,
-  sequenceNumber: number,
+  sequenceNumber: string,
   gas: number = 200,
   gasPrice: number = 100,
   chainId: number = 1,

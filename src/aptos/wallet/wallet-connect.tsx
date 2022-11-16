@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { useUserCoinData } from '../services/coin';
 import Button from '../../components/button/button';
