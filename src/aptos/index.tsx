@@ -4,8 +4,8 @@ import { AptosStateProvider } from "./store/state";
 import WalletConnect from './wallet/wallet-connect';
 import AccountComp from "./components/Account";
 import CoinsComp from "./components/Coin";
-import TransferComp from "./components/Transfer";
 import Box from "@mui/material/Box";
+import SdkComp from "./components/Sdk";
 
 const style: CSSProperties = {
   display: 'flex',
@@ -24,9 +24,7 @@ const App: React.FC = () => {
         <div style={style}>
           <AccountComp />
           <Box mb={3} />
-          <CoinsComp />
-          <Box mb={3} />
-          <TransferComp />
+          <SdkComp />
           <WalletConnect />
         </div>
       </AptosStateProvider>
