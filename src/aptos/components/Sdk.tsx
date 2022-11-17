@@ -49,14 +49,18 @@ const useBorrowDeposit = () => {
     const tag = lendApp.FakeBTC.getTag();
     const txn = lendApp.payload_borrow(amountU64, [lendApp.FakeBTC.getTag()]);
     // @ts-ignore
-    signAndSubmitTransaction(txn);
+    return signAndSubmitTransaction(txn);
   }, [lendApp, connected, signAndSubmitTransaction])
   return borrow;
 }
 
 const SdkComp: React.FC = () => {
-  const { stats } = useStats();
+  const { stats, refreshStats } = useStats();
   const borrow = useBorrowDeposit();
+  const handleBorrow = useCallback(async () => {
+    await borrow(100);
+    refreshStats();
+  }, [refreshStats, borrow])
   return (
     <div style={{ width: '100%' }}>
       <Typography variant='h4' borderBottom={1} mb={2}>
@@ -68,7 +72,7 @@ const SdkComp: React.FC = () => {
       <Typography>
         Lended: { stats[1] }
       </Typography>
-      <Button onClick={() => borrow(100)}>Borrow</Button>
+      <Button onClick={handleBorrow}>Borrow</Button>
     </div>
   )
 }
